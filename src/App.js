@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Movies from './components/films';
+import Draw from './components/draw';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ const [movies, setMovies] = useState([]);
+
+ const addMovie = (newMovie) => {
+   setMovies([...movies, newMovie]);
+ };
+
+ const removeMovie = (movie) => {
+   setMovies(movies.filter(m => m !== movie));
+ };
+
+ return (
+   <div className="App">
+     <h1>Filmnator 🍿</h1>
+     <Movies movies={movies} addMovie={addMovie} removeMovie={removeMovie} />
+     <Draw movies={movies} />
+   </div>
+ );
 }
 
 export default App;

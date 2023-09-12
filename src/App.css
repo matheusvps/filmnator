@@ -1,38 +1,76 @@
-.App {
+.sorting-container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sorting-button {
+  margin-top: 10px; /* Adicione um espaçamento para o botão */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.movies-list {
+  list-style: none;
+  padding: 5px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction:column;
+  grid-template-columns: 1fr auto; /* Divide as colunas em partes iguais, onde a primeira parte contém o nome do filme e a segunda parte contém o botão */
+  gap: 8px; /* Espaçamento entre os itens */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.movie-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  position: relative; 
+  overflow: hidden;/* Adicionamos uma posição relativa */
 }
 
-.App-link {
-  color: #61dafb;
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+	background: linear-gradient(45deg, #f0f0f0, #fffb00, #ff00009f, #ff0000);
+  background-size: 400% 400%;
+  animation: gradient 10s alternate infinite;
+  z-index: -1; /* Coloca a camada abaixo do conteúdo */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.popcorn-animation {
+  animation: popcornAnimation 1s ease infinite;
+}
+
+.popcorn {
+  font-size: 3em;
+}
+
+
+@keyframes popcornAnimation {
+  0% { transform: translateY(0) rotate(0deg); }
+  10% { transform: translateY(-10px) rotate(10deg); }
+  30% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-10px) rotate(10deg); }
+  70% { transform: translateY(0) rotate(-5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
